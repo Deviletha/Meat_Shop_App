@@ -20,7 +20,7 @@ class CartPage extends StatelessWidget {
         iconTheme: IconThemeData(color: Colors.black),
       ),
       body: SingleChildScrollView(
-        physics: NeverScrollableScrollPhysics(),
+        physics: ScrollPhysics(),
         child: Padding(
           padding: const EdgeInsets.all(15),
           child: Column(
@@ -37,12 +37,12 @@ class CartPage extends StatelessWidget {
                 height: 20,
               ),
               ListView.builder(
+                physics: NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
                 itemCount: carthome.length,
                 itemBuilder: (context, index) {
                   var item = carthome[index];
                   totalAmount = (item.price * item.count) + totalAmount;
-
                   return Padding(
                     padding: const EdgeInsets.only(bottom: 10, top: 10),
                     child: Container(
@@ -107,7 +107,7 @@ class CartPage extends StatelessWidget {
                         ),
                         padding: EdgeInsets.all(12),
                         child: Row(
-                          children: [
+                          children: const [
                             Text(
                               "Pay Now",
                               style: TextStyle(
