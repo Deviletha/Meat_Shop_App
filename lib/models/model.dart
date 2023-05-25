@@ -6,3 +6,4 @@ class Products {
 
   Products({required this.name, required this.price, required this.image, this.count = 1});
 }
+
