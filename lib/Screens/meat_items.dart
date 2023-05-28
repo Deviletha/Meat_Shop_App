@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../components/item_tile.dart';
-import '../provider/cart_provider.dart';
-import 'cart_page.dart';
-
+import 'cart_page/controller/cart_provider.dart';
+import 'cart_page/cart_page.dart';
 
 class MeatItems extends StatelessWidget {
   MeatItems({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-
     var meathome = context.watch<CartProvider>().meathome;
     var marinatedcart = context.watch<CartProvider>().cartall;
 
@@ -28,15 +26,13 @@ class MeatItems extends StatelessWidget {
               return CartPage();
             },
           )),
-          child:  Wrap(
-              children: [
-                Icon(
-                  Icons.shopping_bag,
-                  color: Colors.white,
-                ),
-                Text("${marinatedcart.length}")
-              ]
-          ),
+          child: Wrap(children: [
+            Icon(
+              Icons.shopping_bag,
+              color: Colors.white,
+            ),
+            Text("${marinatedcart.length}")
+          ]),
         ),
         body: Padding(
           padding:
@@ -57,9 +53,9 @@ class MeatItems extends StatelessWidget {
                     physics: NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2, childAspectRatio:0.8),
+                        crossAxisCount: 2, childAspectRatio: 0.8),
                     itemBuilder: (context, index) {
-                      var meat= meathome[index];
+                      var meat = meathome[index];
                       return ItemTile(
                         ItemName: meat.name,
                         ItemPrice: "${meat.price}",

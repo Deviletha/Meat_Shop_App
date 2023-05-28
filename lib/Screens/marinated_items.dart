@@ -1,17 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../components/item_tile.dart';
-import '../provider/cart_provider.dart';
-import 'cart_page.dart';
-
-
+import 'cart_page/controller/cart_provider.dart';
+import 'cart_page/cart_page.dart';
 
 class MarinatedItems extends StatelessWidget {
   MarinatedItems({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-
     var marinatedhome = context.watch<CartProvider>().marinatedhome;
     var marinatedcart = context.watch<CartProvider>().cartall;
 
@@ -29,15 +26,13 @@ class MarinatedItems extends StatelessWidget {
               return CartPage();
             },
           )),
-          child:  Wrap(
-              children: [
-                Icon(
-                  Icons.shopping_bag,
-                  color: Colors.white,
-                ),
-                Text("${marinatedcart.length}")
-              ]
-          ),
+          child: Wrap(children: [
+            Icon(
+              Icons.shopping_bag,
+              color: Colors.white,
+            ),
+            Text("${marinatedcart.length}")
+          ]),
         ),
         body: Padding(
           padding:
@@ -60,7 +55,7 @@ class MarinatedItems extends StatelessWidget {
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 2, childAspectRatio: 0.8),
                     itemBuilder: (context, index) {
-                      var marinated= marinatedhome[index];
+                      var marinated = marinatedhome[index];
                       return ItemTile(
                         ItemName: marinated.name,
                         ItemPrice: "${marinated.price}",

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../components/item_tile.dart';
-import '../provider/cart_provider.dart';
-import 'cart_page.dart';
+import 'cart_page/controller/cart_provider.dart';
+import 'cart_page/cart_page.dart';
 
 class FishItems extends StatelessWidget {
   FishItems({Key? key}) : super(key: key);
@@ -25,15 +25,13 @@ class FishItems extends StatelessWidget {
               return CartPage();
             },
           )),
-          child: Wrap(
-            children: [
+          child: Wrap(children: [
             Icon(
               Icons.shopping_bag,
               color: Colors.white,
             ),
-              Text("${fishcart.length}")
-            ]
-          ),
+            Text("${fishcart.length}")
+          ]),
         ),
         body: Padding(
           padding:
@@ -56,14 +54,14 @@ class FishItems extends StatelessWidget {
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 2, childAspectRatio: 0.8),
                     itemBuilder: (context, index) {
-                      var fish= fishhome[index];
+                      var fish = fishhome[index];
                       return ItemTile(
                         ItemName: fish.name,
                         ItemPrice: "${fish.price}",
                         ImagePath: fish.image,
                         color: Colors.green,
                         onPressed: () {
-                        context.read<CartProvider>().addToCart(fish);
+                          context.read<CartProvider>().addToCart(fish);
                         },
                       );
                     })

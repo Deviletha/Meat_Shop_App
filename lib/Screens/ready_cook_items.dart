@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../components/item_tile.dart';
-import '../provider/cart_provider.dart';
-import 'cart_page.dart';
-
+import 'cart_page/controller/cart_provider.dart';
+import 'cart_page/cart_page.dart';
 
 class ReadyToCookItems extends StatelessWidget {
   ReadyToCookItems({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-
     var readytocookhome = context.watch<CartProvider>().readytocookhome;
     var readytocookcart = context.watch<CartProvider>().cartall;
 
@@ -28,15 +26,13 @@ class ReadyToCookItems extends StatelessWidget {
               return CartPage();
             },
           )),
-          child: Wrap(
-              children: [
-                Icon(
-                  Icons.shopping_bag,
-                  color: Colors.white,
-                ),
-                Text("${readytocookcart.length}")
-              ]
-          ),
+          child: Wrap(children: [
+            Icon(
+              Icons.shopping_bag,
+              color: Colors.white,
+            ),
+            Text("${readytocookcart.length}")
+          ]),
         ),
         body: Padding(
           padding:
@@ -59,7 +55,7 @@ class ReadyToCookItems extends StatelessWidget {
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 2, childAspectRatio: 0.8),
                     itemBuilder: (context, index) {
-                      var readytocook= readytocookhome[index];
+                      var readytocook = readytocookhome[index];
                       return ItemTile(
                         ItemName: readytocook.name,
                         ItemPrice: "${readytocook.price}",

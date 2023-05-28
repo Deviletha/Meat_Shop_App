@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-
-import 'category_page/views/category_page.dart';
+import 'package:meet_shop/Screens/category_page/views/category_page.dart';
+import 'package:meet_shop/Screens/login_page/controller/login_page_controller.dart';
+import 'package:meet_shop/Screens/signup_screen/signup_screen.dart';
+import 'package:provider/provider.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -10,6 +12,8 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   var formkey = GlobalKey<FormState>();
   bool showpass = true;
+  TextEditingController userIdController = TextEditingController();
+  TextEditingController passController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -35,8 +39,10 @@ class _LoginPageState extends State<LoginPage> {
               style: TextStyle(fontSize: 15, color: Colors.black45),
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 10,right: 10,top: 20,bottom: 20),
+              padding: const EdgeInsets.only(
+                  left: 10, right: 10, top: 20, bottom: 20),
               child: TextFormField(
+                controller: userIdController,
                 decoration: InputDecoration(
                     prefixIcon: const Icon(Icons.account_box_sharp),
                     hintText: "Email ID",
@@ -54,8 +60,10 @@ class _LoginPageState extends State<LoginPage> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 10,right: 10,top: 20,bottom: 20),
+              padding: const EdgeInsets.only(
+                  left: 10, right: 10, top: 20, bottom: 20),
               child: TextFormField(
+                controller: passController,
                 obscureText: showpass,
                 obscuringCharacter: "*",
                 decoration: InputDecoration(
@@ -94,7 +102,11 @@ class _LoginPageState extends State<LoginPage> {
               height: 50,
               child: ElevatedButton(
                 onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => Category()));
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => CategoryPage()));
+                  context.read<LoginPageController>().login(
+                      userId: userIdController.text.trim(),
+                      password: passController.text.trim());
                 },
                 child: Text("Login"),
                 style: ElevatedButton.styleFrom(
@@ -106,9 +118,12 @@ class _LoginPageState extends State<LoginPage> {
               ),
             ),
             TextButton(
-              child: Text("Do you have an account? Sign Up",
+              child: Text("Dont have an account? Sign Up",
                   style: TextStyle(fontSize: 15, color: Colors.black45)),
-              onPressed: () { },
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => SignUpPage()));
+              },
             ),
           ],
         ),

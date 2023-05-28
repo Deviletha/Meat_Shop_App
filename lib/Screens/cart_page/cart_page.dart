@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:meet_shop/provider/cart_provider.dart';
+import 'package:meet_shop/Screens/cart_page/controller/cart_provider.dart';
 import 'package:provider/provider.dart';
 
 class CartPage extends StatelessWidget {
@@ -55,15 +55,15 @@ class CartPage extends StatelessWidget {
                         ),
                         title: Text(item.name),
                         subtitle: Text('₹ ${item.price}\Kg'),
-                        trailing: Wrap(
-                          children : [
-                            Text(item.count.toString()),
+                        trailing: Wrap(children: [
+                          Text(item.count.toString()),
                           IconButton(
-                            onPressed: () => Provider.of<CartProvider>(context, listen: false).removeFromCart(item),
+                            onPressed: () => Provider.of<CartProvider>(context,
+                                    listen: false)
+                                .removeFromCart(item),
                             icon: Icon(Icons.delete_outline),
                           ),
-                    ]
-                        ),
+                        ]),
                       ),
                     ),
                   );
