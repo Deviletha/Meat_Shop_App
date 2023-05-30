@@ -55,7 +55,7 @@ class _LoginPageState extends State<LoginPage> {
                         borderRadius: BorderRadius.circular(10))),
                 textInputAction: TextInputAction.next,
                 validator: (uname) {
-                  if (uname!.isEmpty || !uname.contains('@')) {
+                  if (uname!.isEmpty || !uname.contains('')) {
                     return 'Enter a valid Phone Number';
                   } else {
                     return null;

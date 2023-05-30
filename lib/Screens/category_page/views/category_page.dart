@@ -76,7 +76,7 @@ class _CategoryPageState extends State<CategoryPage> {
                           physics: NeverScrollableScrollPhysics(),
                           gridDelegate:
                               SliverGridDelegateWithFixedCrossAxisCount(
-                                  crossAxisCount: 2, childAspectRatio: 0.8),
+                                  crossAxisCount: 2, childAspectRatio: 0.7),
                           itemBuilder: (context, index) {
                             final dataList = context
                                 .watch<CategoriesPageController>()

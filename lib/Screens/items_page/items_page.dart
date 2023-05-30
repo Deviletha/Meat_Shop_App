@@ -62,7 +62,7 @@ class _ItemsPageState extends State<ItemsPage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "Fish Items",
+                        "Items",
                         style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
@@ -81,7 +81,7 @@ class _ItemsPageState extends State<ItemsPage> {
                               shrinkWrap: true,
                               gridDelegate:
                                   SliverGridDelegateWithFixedCrossAxisCount(
-                                      crossAxisCount: 2, childAspectRatio: 0.8),
+                                      crossAxisCount: 2, childAspectRatio: 0.7),
                               itemBuilder: (context, index) {
                                 var fish = fishhome[index];
 
