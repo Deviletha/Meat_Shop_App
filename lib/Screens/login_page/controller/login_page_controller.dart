@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:meet_shop/api_helper/api_helper.dart';
+import 'package:meet_shop/models/login_res_model.dart';
 
 class LoginPageController extends ChangeNotifier {
   bool isLoading = false;
@@ -16,11 +17,12 @@ class LoginPageController extends ChangeNotifier {
         'password': password,
       },
     );
+    final decodedResponse = LoginResponseModel.fromJson(response[0]);
 
     isLoading = false;
     notifyListeners();
 
-    if (response != null) {
+    if (decodedResponse.status == 1) {
       isSuccess = true;
       print(response);
     }

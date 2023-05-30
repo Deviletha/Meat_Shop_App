@@ -10,9 +10,12 @@ class ApiHelper {
   Future<dynamic> postApi({required String endPoint, required Map body}) async {
     try {
       print('$baseUrl$endPoint');
+      print(body);
       final response = await http.post(
         Uri.parse('$baseUrl$endPoint'),
-        body: jsonEncode(body),
+        body: body,
+        headers: {"Content-Type": "application/x-www-form-urlencoded"},
+        encoding: Encoding.getByName('utf-8'),
       );
       if (response.statusCode == 200) {
         print('success');
@@ -31,22 +34,22 @@ class ApiHelper {
     }
   }
 
-  Future<Map<String, dynamic>?> get({required String endPoint}) async {
-    try {
-      final response = await http.get(
-        Uri.parse('$baseUrl$endPoint'),
-      );
-      if (response.statusCode == 200) {
-        // Request was successful
-        Map<String, dynamic> responseData = jsonDecode(response.body);
-        return responseData;
-      } else {
-        // Request failed
-        print('Error: ${response.statusCode}');
-        return null;
-      }
-    } catch (e) {
-      print(e);
-    }
-  }
+  // Future<Map<String, dynamic>?> get({required String endPoint}) async {
+  //   try {
+  //     final response = await http.get(
+  //       Uri.parse('$baseUrl$endPoint'),
+  //     );
+  //     if (response.statusCode == 200) {
+  //       // Request was successful
+  //       Map<String, dynamic> responseData = jsonDecode(response.body);
+  //       return responseData;
+  //     } else {
+  //       // Request failed
+  //       print('Error: ${response.statusCode}');
+  //       return null;
+  //     }
+  //   } catch (e) {
+  //     print(e);
+  //   }
+  // }
 }

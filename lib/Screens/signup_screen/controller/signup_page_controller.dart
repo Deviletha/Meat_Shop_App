@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:meet_shop/api_helper/api_helper.dart';
+import 'package:meet_shop/models/signup_res_model.dart';
 
 class SignUpPageController extends ChangeNotifier {
   bool isLoading = false;
@@ -34,10 +35,11 @@ class SignUpPageController extends ChangeNotifier {
       },
     );
 
+    final decodedResponse = SignUpResponseModel.fromJson(response);
     isLoading = false;
     notifyListeners();
 
-    if (response != null) {
+    if (decodedResponse.status != 2) {
       isSuccess = true;
       print(response);
     }

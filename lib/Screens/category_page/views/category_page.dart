@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:meet_shop/Screens/category_page/controller/categories_page_controller.dart';
+import 'package:meet_shop/Screens/items_page/items_page.dart';
 import 'package:provider/provider.dart';
-import '../../fish_items.dart';
-import '../../marinated_items.dart';
-import '../../meat_items.dart';
-import '../../ready_cook_items.dart';
+
 import '../widgets/category_item_card.dart';
 
 class CategoryPage extends StatefulWidget {
@@ -18,8 +16,7 @@ class _CategoryPageState extends State<CategoryPage> {
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
-      bool success =
-          await context.read<CategoriesPageController>().getCategories();
+      await context.read<CategoriesPageController>().getCategories();
     });
 
     super.initState();
@@ -90,7 +87,9 @@ class _CategoryPageState extends State<CategoryPage> {
                               onPressed: () {
                                 Navigator.push(context, MaterialPageRoute(
                                   builder: (context) {
-                                    return MeatItems();
+                                    return ItemsPage(
+                                      categoryId: dataList[index].id!,
+                                    );
                                   },
                                 ));
                               },

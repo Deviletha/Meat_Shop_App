@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:meet_shop/Screens/category_page/controller/categories_page_controller.dart';
+import 'package:meet_shop/Screens/items_page/controller/items_page_controller.dart';
 import 'package:meet_shop/Screens/login_page/controller/login_page_controller.dart';
 import 'package:meet_shop/Screens/signup_screen/controller/signup_page_controller.dart';
 import 'package:meet_shop/Screens/cart_page/controller/cart_provider.dart';
@@ -24,6 +25,8 @@ class MyApp extends StatelessWidget {
             create: (_) => SignUpPageController()),
         ChangeNotifierProvider<CategoriesPageController>(
             create: (_) => CategoriesPageController()),
+        ChangeNotifierProvider<ItemsPageController>(
+            create: (_) => ItemsPageController()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

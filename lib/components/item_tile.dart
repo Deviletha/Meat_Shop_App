@@ -9,11 +9,11 @@ class ItemTile extends StatelessWidget {
 
   ItemTile(
       {Key? key,
-        required this.ItemName,
-        required this.ItemPrice,
-        required this.ImagePath,
-        this.color,
-        required this.onPressed})
+      required this.ItemName,
+      required this.ItemPrice,
+      required this.ImagePath,
+      this.color,
+      required this.onPressed})
       : super(key: key);
 
   @override
@@ -21,7 +21,6 @@ class ItemTile extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(12),
       child: Container(
-
         width: 190,
         child: Card(
           shadowColor: Colors.black,
@@ -44,8 +43,8 @@ class ItemTile extends StatelessWidget {
                               topRight: Radius.circular(15),
                               topLeft: Radius.circular(15)),
                           image: DecorationImage(
-                              image: AssetImage(
-                                ImagePath,
+                              image: NetworkImage(
+                                'https://apihcart.hawkssolutions.com/public$ImagePath',
                               ),
                               fit: BoxFit.fill)),
                     )),
@@ -81,7 +80,7 @@ class ItemTile extends StatelessWidget {
                             ),
                             style: ButtonStyle(
                               shape: MaterialStateProperty.all<
-                                  RoundedRectangleBorder>(
+                                      RoundedRectangleBorder>(
                                   RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(8))),
                               backgroundColor: MaterialStateProperty.all(color),

@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously, avoid_print
+
 import 'package:flutter/material.dart';
 import 'package:meet_shop/Screens/category_page/views/category_page.dart';
 import 'package:meet_shop/Screens/login_page/controller/login_page_controller.dart';
@@ -5,6 +7,8 @@ import 'package:meet_shop/Screens/signup_screen/signup_screen.dart';
 import 'package:provider/provider.dart';
 
 class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
+
   @override
   State<LoginPage> createState() => _LoginPageState();
 }
@@ -25,6 +29,7 @@ class _LoginPageState extends State<LoginPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Center(
+              heightFactor: 2,
               child: Text(
                 "Login",
                 style: TextStyle(
@@ -32,7 +37,6 @@ class _LoginPageState extends State<LoginPage> {
                     fontSize: 40,
                     color: Colors.black),
               ),
-              heightFactor: 2,
             ),
             Text(
               "Welcome back! Login with your credentials",
@@ -45,14 +49,14 @@ class _LoginPageState extends State<LoginPage> {
                 controller: userIdController,
                 decoration: InputDecoration(
                     prefixIcon: const Icon(Icons.account_box_sharp),
-                    hintText: "Email ID",
-                    labelText: 'Email ID',
+                    hintText: "Phone Number",
+                    labelText: 'Phone Number',
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10))),
                 textInputAction: TextInputAction.next,
                 validator: (uname) {
                   if (uname!.isEmpty || !uname.contains('@')) {
-                    return 'Enter a valid Email ID';
+                    return 'Enter a valid Phone Number';
                   } else {
                     return null;
                   }
@@ -101,20 +105,36 @@ class _LoginPageState extends State<LoginPage> {
               width: 350,
               height: 50,
               child: ElevatedButton(
-                onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => CategoryPage()));
-                  context.read<LoginPageController>().login(
-                      userId: userIdController.text.trim(),
-                      password: passController.text.trim());
+                onPressed: () async {
+                  final isSuccess = await context
+                      .read<LoginPageController>()
+                      .login(
+                          userId: userIdController.text.trim(),
+                          password: passController.text.trim());
+                  print(isSuccess);
+                  if (isSuccess == true) {
+                    userIdController.clear();
+                    passController.clear();
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => CategoryPage()));
+                  } else {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        backgroundColor: Colors.red,
+                        content: Text('Login Failed, Try again'),
+                      ),
+                    );
+                  }
                 },
-                child: Text("Login"),
                 style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.green,
                     shadowColor: Colors.green[300],
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15),
                     )),
+                child: Text("Login"),
               ),
             ),
             TextButton(

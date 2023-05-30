@@ -272,8 +272,8 @@ class _SignUpPageState extends State<SignUpPage> {
                             address: addressController.text.trim(),
                             postal: postalCodeController.text.trim(),
                             location: locationController.text.trim());
-
-                    if (success = true) {
+                    print(success);
+                    if (success == true) {
                       userIdController.clear();
                       firstNameController.clear();
                       secondNameController.clear();
@@ -286,7 +286,12 @@ class _SignUpPageState extends State<SignUpPage> {
                       Navigator.pushReplacement(context,
                           MaterialPageRoute(builder: (context) => LoginPage()));
                     } else {
-                      print('Sign up Failed');
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          backgroundColor: Colors.red,
+                          content: Text('Sign UP Failed, Try again'),
+                        ),
+                      );
                     }
                   },
                   style: ElevatedButton.styleFrom(
