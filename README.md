@@ -1,4 +1,4 @@
-# meet_shop
+# meat_shop
 
 A new Flutter project.
 
