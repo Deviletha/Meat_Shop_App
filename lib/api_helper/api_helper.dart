@@ -33,23 +33,4 @@ class ApiHelper {
       print(e);
     }
   }
-
-  // Future<Map<String, dynamic>?> get({required String endPoint}) async {
-  //   try {
-  //     final response = await http.get(
-  //       Uri.parse('$baseUrl$endPoint'),
-  //     );
-  //     if (response.statusCode == 200) {
-  //       // Request was successful
-  //       Map<String, dynamic> responseData = jsonDecode(response.body);
-  //       return responseData;
-  //     } else {
-  //       // Request failed
-  //       print('Error: ${response.statusCode}');
-  //       return null;
-  //     }
-  //   } catch (e) {
-  //     print(e);
-  //   }
-  // }
 }
