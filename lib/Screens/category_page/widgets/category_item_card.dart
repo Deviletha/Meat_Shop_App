@@ -61,12 +61,6 @@ class _CategoryItemTileState extends State<CategoryItemTile> {
                       ),
                       ElevatedButton(
                         onPressed: widget.onPressed,
-                        child: Text(
-                          "View more",
-                          style: TextStyle(
-                            color: Colors.white,
-                          ),
-                        ),
                         style: ButtonStyle(
                           shape:
                               MaterialStateProperty.all<RoundedRectangleBorder>(
@@ -74,6 +68,12 @@ class _CategoryItemTileState extends State<CategoryItemTile> {
                                       borderRadius: BorderRadius.circular(8))),
                           backgroundColor:
                               MaterialStateProperty.all(widget.color),
+                        ),
+                        child: Text(
+                          "View more",
+                          style: TextStyle(
+                            color: Colors.white,
+                          ),
                         ),
                       )
                     ],
